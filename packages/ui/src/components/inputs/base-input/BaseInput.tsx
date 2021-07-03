@@ -1,14 +1,16 @@
-import React, { FC, HTMLProps } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { colors } from "../../../theme/colors";
 import { padding } from "../../../theme/padding";
 import { text } from "../../../theme/text";
+import { font } from "../../../theme/font";
 
 const StyledBaseInput = styled.input`
-  border: 1px solid ${colors("gray.900")};
-  padding: ${padding("2")} ${padding("5")};
+  border: 1px solid ${colors("gray.600")};
+  padding: ${padding("4")} ${padding("6")};
   font-size: ${text("base")};
   outline: none;
+  font-family: ${font("sans")};
   &:focus {
     border: 1px solid ${colors("blue.600")};
   }

@@ -1,16 +1,18 @@
-import {ThemeType} from "./Theme.type";
-import {colorTheme} from "./colors";
-import {borderTheme} from "./border";
-import {textTheme} from "./text";
-import {paddingTheme} from "./padding";
-import {boxShadowTheme} from "./box-shadow";
+import { ThemeType } from "./Theme.type";
+import { colorTheme } from "./colors";
+import { borderTheme } from "./border";
+import { textTheme } from "./text";
+import { paddingTheme } from "./padding";
+import { boxShadowTheme } from "./box-shadow";
+import { fontTheme } from "./font";
 
 const theme: ThemeType = {
-	colors: colorTheme,
-	border: borderTheme,
-	text: textTheme,
-	padding: paddingTheme,
-	boxShadow: boxShadowTheme
-}
+  font: fontTheme,
+  colors: colorTheme,
+  border: borderTheme,
+  text: textTheme,
+  padding: paddingTheme,
+  boxShadow: boxShadowTheme,
+};
 
-export { theme }
+export { theme };

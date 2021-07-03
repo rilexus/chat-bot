@@ -5,8 +5,8 @@ type BorderRadiusType = {
 	md:	string,
 	lg:	string,
 	xl:	string,
-	xxl: string,
-	xxxl:	string,
+	"2xl": string,
+	"3xl":	string,
 }
 
 export { BorderRadiusType }
