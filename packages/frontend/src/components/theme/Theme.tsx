@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import  {ThemeProvider} from "@chat-bot/ui";
 
 const fetchTheme = async (name: string) => {
-	await new Promise((res) => setTimeout(res, 2000))
+	await new Promise((res) => setTimeout(res, 300))
 	//@ts-ignore
 	return (await import('./defaultTheme')).default
 }
