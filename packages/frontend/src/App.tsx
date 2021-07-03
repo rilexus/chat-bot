@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {BaseButton, theme, ThemeProvider} from "@chat-bot/ui";
-
+import {BaseButton} from "@chat-bot/ui";
+import {Theme} from "./components";
 
 const post = (path: string, body: object) => fetch(path, {
 	method: 'POST',
@@ -22,10 +22,10 @@ const App = () => {
 	
 	return (
 		<div>
-			<ThemeProvider theme={theme}>
+			<Theme>
 				<BaseButton>click</BaseButton>
-			</ThemeProvider>
-			Works
+				Works
+			</Theme>
 		</div>
 	);
 };

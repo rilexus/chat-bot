@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = (env) => {
 	return {
 		entry: {
-			"app": ['./src/index.tsx']
+			"app": ['./src/index.ts']
 		},
 		module: {
 			rules: [
