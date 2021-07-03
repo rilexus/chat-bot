@@ -7,6 +7,7 @@
   "author": "Stanislav Panchenko",
   "license": "ISC",
   "dependencies": {
+    "@chat-bot/ui": "1.0.0",
     "@chat-bot/webpack-config": "1.0.0",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",

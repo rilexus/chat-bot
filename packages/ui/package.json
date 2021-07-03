@@ -1,0 +1,21 @@
+{
+  "name": "@chat-bot/ui",
+  "description": "",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "tsc:watch": "tsc --watch",
+    "start:dev": "npm run tsc:watch"
+  },
+  "author": "Stanislav Panchenko",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8"
+  }
+}

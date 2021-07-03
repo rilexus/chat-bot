@@ -2,7 +2,9 @@
   "name": "@chat-bot/core",
   "description": "",
   "scripts": {
-    "start:dev": "lerna run start:dev --parallel"
+    "bootstrap": "lerna bootstrap",
+    "start:dev": "lerna run start:dev --parallel",
+    "postinstall": "yarn run bootstrap"
   },
   "workspaces": [
     "packages/*"

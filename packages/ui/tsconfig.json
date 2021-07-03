@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "dist"
+  },
+  "exclude": ["dist", "node_modules"]
+}
