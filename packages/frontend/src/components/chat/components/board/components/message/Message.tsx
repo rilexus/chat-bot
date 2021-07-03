@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { border, colors, padding } from "@chat-bot/ui";
-import { font } from "@chat-bot/ui/dist/src/theme/font";
+import { border, colors, padding, font } from "@chat-bot/ui";
 
 const StyledBaseMessage = styled.div`
   display: inline-block;
