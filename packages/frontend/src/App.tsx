@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {BaseButton} from "@chat-bot/ui";
 import {Theme} from "./components";
+import {Chat} from "./components/chat";
 
 const post = (path: string, body: object) => fetch(path, {
 	method: 'POST',
@@ -24,7 +25,7 @@ const App = () => {
 		<div>
 			<Theme>
 				<BaseButton>click</BaseButton>
-				Works
+				<Chat/>
 			</Theme>
 		</div>
 	);
