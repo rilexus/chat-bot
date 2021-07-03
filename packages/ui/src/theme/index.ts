@@ -4,6 +4,9 @@ export * from './providers'
 
 export * from './colors'
 export * from './border'
+export * from './css'
+export * from './padding'
+export * from './box-shadow'
 
 
 
