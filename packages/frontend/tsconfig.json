@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "lib": ["DOM", "es5", "es6"],
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "**/*.d.ts",
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
+}

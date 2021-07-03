@@ -1,0 +1,26 @@
+{
+  "name": "@chat-bot/frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "webpack serve --config ./webpack.config.js --env mode=development --env port=3000"
+  },
+  "author": "Stanislav Panchenko",
+  "license": "ISC",
+  "dependencies": {
+    "@chat-bot/webpack-config": "1.0.0",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack-merge": "^5.8.0",
+    "webpack-notifier": "^1.13.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5",
+    "webpack": "^5.42.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
