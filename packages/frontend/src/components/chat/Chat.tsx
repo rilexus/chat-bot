@@ -2,7 +2,6 @@ import React, { FC, useCallback } from "react";
 import { Board } from "./components";
 import { BoardInput } from "./components/board-input/BoardInput";
 import { useChatState } from "./state/hooks/use-chart-state";
-import { messageClient as client } from "../../clients/message-client";
 import {
   COMPONENT_TYPES,
   BoardComponentType,
@@ -10,9 +9,10 @@ import {
 } from "@chat-bot/types";
 import { useSocketDispatch, useSocketOn } from "../../clients";
 
-const useBoardController = (
-  { messageClient } = { messageClient: client }
-): [BoardComponentType[], { sendMessage: (message: string) => void }] => {
+const useBoardController = (): [
+  BoardComponentType[],
+  { sendMessage: (message: string) => void }
+] => {
   const state = useChatState();
   const dispatch = useSocketDispatch();
 
