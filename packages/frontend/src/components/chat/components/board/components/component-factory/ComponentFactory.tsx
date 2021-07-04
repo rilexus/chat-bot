@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Message } from "../message";
-import { BoardComponentType } from "../../../../types";
-import { COMPONENT_TYPES } from "../../../../enums";
+import { BoardComponentType, COMPONENT_TYPES } from "@chat-bot/types";
 
 const ComponentFactory: FC<{ component: BoardComponentType }> = ({
   component,

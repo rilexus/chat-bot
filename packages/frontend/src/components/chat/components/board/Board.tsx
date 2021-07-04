@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { BoardComponentType } from "../../types";
 import { BoardRow, ComponentFactory } from "./components";
+import { BoardComponentType } from "@chat-bot/types";
 
 const Board: FC<{ boardComponents: BoardComponentType[] }> = ({
   boardComponents,
