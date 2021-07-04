@@ -3,7 +3,6 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
-import { getRoutes } from "./routes";
 import { handleMessages } from "./event-handlers";
 
 function errorMiddleware(error, req, res, next) {
@@ -63,8 +62,6 @@ function startServer() {
   app.use(bodyParser.json());
   app.use(cors());
 
-  app.use("/", getRoutes());
-
   app.use(errorMiddleware);
 
   const httpServer = createServer(app);
@@ -75,7 +72,7 @@ function startServer() {
     },
   });
 
-  const onConnection = (socket) => {
+  const onConnection = (socket: Socket) => {
     // add more handlers here
     handleMessages(io, socket);
   };
