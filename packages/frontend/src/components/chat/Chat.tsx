@@ -6,7 +6,7 @@ import { COMPONENT_TYPES } from "./enums";
 import { messageClient } from "../../clients/message-client";
 import { BoardComponentType } from "./types";
 
-const useMessage = (): [
+const useBoardController = (): [
   BoardComponentType[],
   { sendMessage: (message: string) => void }
 ] => {
@@ -29,7 +29,7 @@ const useMessage = (): [
 };
 
 const Chat: FC = () => {
-  const [components, { sendMessage }] = useMessage();
+  const [components, { sendMessage }] = useBoardController();
 
   const handleSend = (message: string) => {
     sendMessage(message);
