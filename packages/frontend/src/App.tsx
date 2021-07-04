@@ -14,8 +14,8 @@ const post = (path: string, body: object) =>
 
 const App = () => {
   useEffect(() => {
-    post("http://localhost:8000/messages", {
-      some: 42,
+    post("http://localhost:8000/message", {
+      message: 42,
     })
       .then((res) => res.json())
       .then(console.log);

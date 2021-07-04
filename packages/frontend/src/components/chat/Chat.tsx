@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Board, BoardComponentType, COMPONENT_TYPES } from "./components";
 import { BoardInput } from "./components/board-input/BoardInput";
+import { messageClient } from "../../clients";
 
 const Chat = () => {
   const [messages, setMessages] = useState<BoardComponentType[]>([
@@ -32,7 +33,7 @@ const Chat = () => {
       <div>
         <BoardInput
           onSend={(message) => {
-            console.log(message);
+            messageClient.sendMessage(message);
           }}
         />
       </div>
