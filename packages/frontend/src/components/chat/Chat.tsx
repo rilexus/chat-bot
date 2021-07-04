@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RoundInput } from "@chat-bot/ui";
 import { Board, BoardComponentType, COMPONENT_TYPES } from "./components";
+import { proxy, useProxy } from "../../libs";
+
+const state = proxy({ inputValue: "some" });
 
 const Chat = () => {
+  const s = useProxy(state);
+
   const [messages, setMessages] = useState<BoardComponentType[]>([
     {
       own: true,
@@ -30,7 +35,12 @@ const Chat = () => {
         <Board boardComponents={messages} />
       </div>
       <div>
-        <RoundInput type={"text"} placeholder={"Message"} />
+        <RoundInput
+          type={"text"}
+          placeholder={"Message"}
+          value={s.inputValue}
+          onChange={(e: any) => (state.inputValue = e.target.value)}
+        />
       </div>
     </div>
   );
