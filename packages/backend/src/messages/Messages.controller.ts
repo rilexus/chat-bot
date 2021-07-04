@@ -13,7 +13,6 @@ MessagesController.post(
     "message"
   ).isString,
   (req, res) => {
-    console.log(req.body);
     res.json(req.body);
   }
 );

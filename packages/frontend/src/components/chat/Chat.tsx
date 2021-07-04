@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { Board } from "./components";
 import { BoardInput } from "./components/board-input/BoardInput";
 import { useChatState } from "./state/hooks/use-chart-state";
@@ -12,18 +12,21 @@ const useBoardController = (): [
 ] => {
   const state = useChatState();
 
-  const sendMessage = (message: string) => {
-    messageClient.sendMessage(message).then((res) => {
-      state.components = [
-        ...state.components,
-        {
-          own: false,
-          props: { id: "22", value: res.message },
-          type: COMPONENT_TYPES.TEXT_MESSAGE,
-        },
-      ];
-    });
-  };
+  const sendMessage = useCallback(
+    (message: string) => {
+      messageClient.sendMessage(message).then((res) => {
+        state.components = [
+          ...state.components,
+          {
+            own: false,
+            props: { id: "22", value: res.message },
+            type: COMPONENT_TYPES.TEXT_MESSAGE,
+          },
+        ];
+      });
+    },
+    [state]
+  );
 
   return [state.components, { sendMessage }];
 };
