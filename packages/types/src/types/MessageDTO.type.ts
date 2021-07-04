@@ -1,4 +1,4 @@
-type MessageDTOType = {
+type MessageDTO = {
   message: string;
 };
-export { MessageDTOType };
+export { MessageDTO };

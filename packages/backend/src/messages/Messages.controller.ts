@@ -1,5 +1,6 @@
 import express from "express";
 import { body } from "./validation";
+import { messageService } from "./message-service";
 const MessagesController = express.Router();
 
 MessagesController.get("/message", (req, res) => {
@@ -12,7 +13,9 @@ MessagesController.post(
     /* Use this instead: <https://www.npmjs.com/package/express-validation> */
     "message"
   ).isString,
-  (req, res) => {
+  async (req, res) => {
+    const messageDTO = req.body;
+    const p = await messageService.process(messageDTO);
     res.json(req.body);
   }
 );

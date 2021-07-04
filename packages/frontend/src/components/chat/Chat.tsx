@@ -3,12 +3,29 @@ import { Board } from "./components";
 import { BoardInput } from "./components/board-input/BoardInput";
 import { useChatState } from "./state/hooks/use-chart-state";
 import { messageClient as client } from "../../clients/message-client";
-import { COMPONENT_TYPES, BoardComponentType } from "@chat-bot/types";
+import {
+  COMPONENT_TYPES,
+  BoardComponentType,
+  MessageActionTypes,
+} from "@chat-bot/types";
+import { useSocketDispatch, useSocketOn } from "../../clients";
 
 const useBoardController = (
   { messageClient } = { messageClient: client }
 ): [BoardComponentType[], { sendMessage: (message: string) => void }] => {
   const state = useChatState();
+  const dispatch = useSocketDispatch();
+
+  useSocketOn(MessageActionTypes.SERVER_MESSAGE, (payload) => {
+    state.components = [
+      ...state.components,
+      {
+        own: false,
+        props: { id: "22", value: payload.message },
+        type: COMPONENT_TYPES.TEXT_MESSAGE,
+      },
+    ];
+  });
 
   const sendMessage = useCallback(
     (message: string) => {
@@ -20,15 +37,10 @@ const useBoardController = (
           type: COMPONENT_TYPES.TEXT_MESSAGE,
         },
       ];
-      messageClient.sendMessage(message).then((res) => {
-        state.components = [
-          ...state.components,
-          {
-            own: false,
-            props: { id: "22", value: res.message },
-            type: COMPONENT_TYPES.TEXT_MESSAGE,
-          },
-        ];
+
+      dispatch({
+        type: MessageActionTypes.CLIENT_MESSAGE,
+        payload: { message: message },
       });
     },
     [state]
@@ -39,7 +51,6 @@ const useBoardController = (
 
 const Chat: FC = () => {
   const [components, { sendMessage }] = useBoardController();
-
   const handleSend = (message: string) => {
     sendMessage(message);
   };
