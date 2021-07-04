@@ -14,7 +14,7 @@ MessagesController.post(
   ).isString,
   (req, res) => {
     console.log(req.body);
-    res.json({ data: "Messages POST" });
+    res.json(req.body);
   }
 );
 

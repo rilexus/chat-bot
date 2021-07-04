@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Theme } from "./components";
-import { Chat } from "./components/chat";
+import { Theme, Chat } from "./components";
 
 const post = (path: string, body: object) =>
   fetch(path, {

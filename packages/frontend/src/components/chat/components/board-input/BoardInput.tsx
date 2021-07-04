@@ -6,7 +6,7 @@ const BoardInput: FC<{ onSend: (message: string) => void }> = ({ onSend }) => {
   const [value, setValue] = useState("");
 
   const handleSend = () => {
-    onSend(value);
+    value && onSend(value);
     setValue(() => "");
   };
 
