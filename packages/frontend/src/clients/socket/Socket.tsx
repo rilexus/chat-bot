@@ -1,4 +1,5 @@
 import React, {
+  ComponentType,
   createContext,
   FC,
   useContext,
@@ -66,4 +67,21 @@ const SocketProvider: FC = ({ children }) => {
   );
 };
 
-export { SocketProvider, useSocketDispatch, useSocketOn };
+const connectSocket = (
+  mapSocketToProps: (
+    dispatch: (action: {
+      type: string;
+      payload?: { [key: string]: string };
+    }) => void
+  ) => { [key: string]: (...args: any) => void }
+) => {
+  return (Component: ComponentType) => {
+    return (props: any) => {
+      const dispatch = useSocketDispatch();
+      const handlers = mapSocketToProps(dispatch);
+      return <Component {...props} {...handlers} />;
+    };
+  };
+};
+
+export { SocketProvider, useSocketDispatch, useSocketOn, connectSocket };
