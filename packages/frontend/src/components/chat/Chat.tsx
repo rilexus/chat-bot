@@ -5,6 +5,7 @@ import {
   Board,
   BoardComponentType,
   COMPONENT_TYPES,
+  MessageInput,
 } from "./components";
 import { proxy, useProxy } from "../../libs";
 
@@ -40,9 +41,7 @@ const Chat = () => {
         <Board boardComponents={messages} />
       </div>
       <div>
-        <RoundInput
-          type={"text"}
-          placeholder={"Message"}
+        <MessageInput
           value={s.inputValue}
           onChange={(e: any) => (state.inputValue = e.target.value)}
         />
