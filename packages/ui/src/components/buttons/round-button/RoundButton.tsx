@@ -8,7 +8,9 @@ import React, {
 import styled from "styled-components";
 import { StyledBaseButton } from "../base-button/BaseButton";
 
-const StyledRoundButton = styled(StyledBaseButton)``;
+const StyledRoundButton = styled(StyledBaseButton)`
+  vertical-align: middle;
+`;
 
 const RoundButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
   const ref = useRef(null);

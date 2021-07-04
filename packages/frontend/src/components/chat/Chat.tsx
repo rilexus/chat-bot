@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { RoundButton, RoundInput } from "@chat-bot/ui";
-import { Board, BoardComponentType, COMPONENT_TYPES } from "./components";
+import React, { useState } from "react";
+import { RoundInput } from "@chat-bot/ui";
+import {
+  SendButton,
+  Board,
+  BoardComponentType,
+  COMPONENT_TYPES,
+} from "./components";
 import { proxy, useProxy } from "../../libs";
 
 const state = proxy({ inputValue: "some" });
@@ -41,7 +46,7 @@ const Chat = () => {
           value={s.inputValue}
           onChange={(e: any) => (state.inputValue = e.target.value)}
         />
-        <RoundButton>Send</RoundButton>
+        <SendButton />
       </div>
     </div>
   );
