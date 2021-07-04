@@ -9,12 +9,13 @@
   "author": "Stanislav Panchenko",
   "license": "ISC",
   "dependencies": {
+    "@chat-bot/types": "1.0.0",
     "@types/node": "^16.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "node-notifier": "^10.0.0",
-    "ts-node-dev": "^1.1.8"
+    "ts-node-dev": "^1.1.8",
+    "node-notifier": "^10.0.0"
   },
   "devDependencies": {
     "ts-node": "^10.0.0",

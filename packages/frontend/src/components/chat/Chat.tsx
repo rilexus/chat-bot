@@ -2,18 +2,24 @@ import React, { FC, useCallback } from "react";
 import { Board } from "./components";
 import { BoardInput } from "./components/board-input/BoardInput";
 import { useChatState } from "./state/hooks/use-chart-state";
-import { COMPONENT_TYPES } from "./enums";
-import { messageClient } from "../../clients/message-client";
-import { BoardComponentType } from "./types";
+import { messageClient as client } from "../../clients/message-client";
+import { COMPONENT_TYPES, BoardComponentType } from "@chat-bot/types";
 
-const useBoardController = (): [
-  BoardComponentType[],
-  { sendMessage: (message: string) => void }
-] => {
+const useBoardController = (
+  { messageClient } = { messageClient: client }
+): [BoardComponentType[], { sendMessage: (message: string) => void }] => {
   const state = useChatState();
 
   const sendMessage = useCallback(
     (message: string) => {
+      state.components = [
+        ...state.components,
+        {
+          own: true,
+          props: { id: "22", value: message },
+          type: COMPONENT_TYPES.TEXT_MESSAGE,
+        },
+      ];
       messageClient.sendMessage(message).then((res) => {
         state.components = [
           ...state.components,

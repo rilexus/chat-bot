@@ -1,0 +1,18 @@
+{
+  "name": "@chat-bot/types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "scripts": {
+    "tsc:watch": "tsc --watch",
+    "start:dev": "npm run tsc:watch"
+  },
+  "author": "Stanislav Panchenko",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
