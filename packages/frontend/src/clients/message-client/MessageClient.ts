@@ -4,9 +4,11 @@ class MessageClient {
   constructor(private readonly httpClient: HttpClient) {}
 
   async sendMessage(message: string) {
-    return this.httpClient.post("http://localhost:8000/message", {
-      message: message,
-    });
+    return this.httpClient
+      .post("http://localhost:8000/message", {
+        message: message,
+      })
+      .then((res) => res.json());
   }
 }
 

@@ -1,5 +1,5 @@
 import { proxy } from "../../../libs/proxy";
-import { COMPONENT_TYPES } from "../components/board";
+import { COMPONENT_TYPES } from "../enums";
 
 const chatState = proxy({
   components: [
