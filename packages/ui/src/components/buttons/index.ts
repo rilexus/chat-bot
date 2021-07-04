@@ -1,1 +1,2 @@
-export {BaseButton} from "./base-button/BaseButton";
+export * from "./base-button";
+export * from "./round-button";
