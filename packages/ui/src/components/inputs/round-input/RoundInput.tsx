@@ -14,4 +14,4 @@ const RoundInput: FC<InputHTMLAttributes<HTMLInputElement>> = ({
   return <StyledRoundInput type={type} {...props} />;
 };
 
-export { RoundInput };
+export { RoundInput, StyledRoundInput };

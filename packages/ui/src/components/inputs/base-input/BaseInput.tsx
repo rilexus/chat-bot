@@ -6,7 +6,7 @@ import { text } from "../../../theme/text";
 import { font } from "../../../theme/font";
 
 const StyledBaseInput = styled.input`
-  border: 1px solid ${colors("gray.600")};
+  border: 1px solid ${colors("gray.200")};
   padding: ${padding("4")} ${padding("6")};
   font-size: ${text("base")};
   outline: none;

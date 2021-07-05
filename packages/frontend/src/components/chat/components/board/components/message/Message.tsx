@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { border, colors, padding, font } from "@chat-bot/ui";
+import { border, colors, padding, font, boxShadow } from "@chat-bot/ui";
 
 const StyledBaseMessage = styled.div`
   display: inline-block;
   border-radius: ${border("radius.2xl")};
   padding: ${padding("5")} ${padding("7")};
   font-family: ${font("sans")};
+  box-shadow: ${boxShadow("basis")};
 `;
 
 const StyledOwnMessage = styled(StyledBaseMessage)`

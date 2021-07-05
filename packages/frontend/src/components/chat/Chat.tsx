@@ -8,6 +8,8 @@ import {
   MessageActionTypes,
 } from "@chat-bot/types";
 import { useSocketDispatch, useSocketOn } from "../../clients";
+import styled from "styled-components";
+import { colors, padding } from "@chat-bot/ui";
 
 const useBoardController = (): [
   BoardComponentType[],
@@ -49,6 +51,12 @@ const useBoardController = (): [
   return [state.components, { sendMessage }];
 };
 
+const Wrapper = styled.div`
+  background-color: ${colors("blue.200")};
+  padding: 0 ${padding("9")};
+  padding-bottom: ${padding("13")};
+`;
+
 const Chat: FC = () => {
   const [components, { sendMessage }] = useBoardController();
   const handleSend = (message: string) => {
@@ -56,14 +64,14 @@ const Chat: FC = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <div>
         <Board boardComponents={components} />
       </div>
       <div>
         <BoardInput onSend={handleSend} />
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

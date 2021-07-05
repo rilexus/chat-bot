@@ -7,4 +7,5 @@ export * from "./border";
 export * from "./font";
 export * from "./css";
 export * from "./padding";
+export * from "./margin";
 export * from "./box-shadow";

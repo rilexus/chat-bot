@@ -7,9 +7,11 @@ import React, {
 } from "react";
 import styled from "styled-components";
 import { StyledBaseButton } from "../base-button/BaseButton";
+import { margin } from "../../../theme/margin";
 
 const StyledRoundButton = styled(StyledBaseButton)`
   vertical-align: middle;
+  margin: ${margin("3")};
 `;
 
 const RoundButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {

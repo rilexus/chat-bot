@@ -1,12 +1,18 @@
 import React, { FC } from "react";
 import { BoardRow, ComponentFactory } from "./components";
 import { BoardComponentType } from "@chat-bot/types";
+import styled from "styled-components";
+import { padding } from "@chat-bot/ui";
+
+const BoardWrapper = styled.div`
+  padding-bottom: ${padding("5")};
+`;
 
 const Board: FC<{ boardComponents: BoardComponentType[] }> = ({
   boardComponents,
 }) => {
   return (
-    <div>
+    <BoardWrapper>
       {boardComponents.map((component, idx) => {
         return (
           <BoardRow
@@ -17,7 +23,7 @@ const Board: FC<{ boardComponents: BoardComponentType[] }> = ({
           </BoardRow>
         );
       })}
-    </div>
+    </BoardWrapper>
   );
 };
 
