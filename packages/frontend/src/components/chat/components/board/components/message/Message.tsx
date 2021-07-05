@@ -8,6 +8,7 @@ const StyledBaseMessage = styled.div`
   padding: ${padding("5")} ${padding("7")};
   font-family: ${font("sans")};
   box-shadow: ${boxShadow("basis")};
+  line-height: 1.4;
 `;
 
 const StyledOwnMessage = styled(StyledBaseMessage)`
