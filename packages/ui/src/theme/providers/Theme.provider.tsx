@@ -1,14 +1,35 @@
-import React, { FC } from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import React, { FC } from "react";
+import {
+  createGlobalStyle,
+  ThemeProvider as StyledThemeProvider,
+} from "styled-components";
 import { ThemeType } from "../Theme.type";
-import { theme as defaultTheme } from '../theme'
+import { theme as defaultTheme } from "../theme";
 
-const ThemeProvider:FC<{theme?: ThemeType}> = ({theme, children}) => {
-	return (
-		<StyledThemeProvider theme={defaultTheme || theme}>
-			{children}
-		</StyledThemeProvider>
-	);
+const GlobalStyle = createGlobalStyle`
+  * {
+    &::-webkit-scrollbar {
+     display: none;
+    }
+  }
+  html{
+    margin: 0;
+    padding: 0;
+  }
+  body {
+  	margin: 0;
+    padding: 0;
+  }
+  
+`;
+
+const ThemeProvider: FC<{ theme?: ThemeType }> = ({ theme, children }) => {
+  return (
+    <StyledThemeProvider theme={defaultTheme || theme}>
+      <GlobalStyle />
+      {children}
+    </StyledThemeProvider>
+  );
 };
 
-export {ThemeProvider};
+export { ThemeProvider };

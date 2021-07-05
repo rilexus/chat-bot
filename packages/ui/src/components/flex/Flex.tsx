@@ -1,11 +1,15 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 
 const Flex = ({
   children,
+  style,
   justifyContent = "unset",
   alignItems = "unset",
+  direction = "row",
 }: {
   children: ReactNode;
+  style?: CSSProperties;
+  direction?: "row" | "column";
   justifyContent?:
     | "unset"
     | "center"
@@ -18,8 +22,10 @@ const Flex = ({
     <div
       style={{
         display: "flex",
+        flexDirection: direction,
         justifyContent: justifyContent,
         alignItems: alignItems,
+        ...style,
       }}
     >
       {children}
