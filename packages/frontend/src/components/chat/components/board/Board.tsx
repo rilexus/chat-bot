@@ -1,14 +1,22 @@
 import React, { FC, useEffect, useRef } from "react";
 import { BoardRow, ComponentFactory } from "./components";
 import { BoardComponentType } from "@chat-bot/types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { padding } from "@chat-bot/ui";
+
+const ScrollBarNoneCSS = css`
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const BoardWrapper = styled.div`
   padding-bottom: 15vh;
   padding-left: ${padding("5")};
   padding-right: ${padding("5")};
   overflow-y: scroll;
+  ${ScrollBarNoneCSS};
 `;
 
 const Board: FC<{ boardComponents: BoardComponentType[] }> = ({

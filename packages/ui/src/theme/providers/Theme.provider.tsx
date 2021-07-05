@@ -7,11 +7,6 @@ import { ThemeType } from "../Theme.type";
 import { theme as defaultTheme } from "../theme";
 
 const GlobalStyle = createGlobalStyle`
-  * {
-    &::-webkit-scrollbar {
-     display: none;
-    }
-  }
   html{
     margin: 0;
     padding: 0;
