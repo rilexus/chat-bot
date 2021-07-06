@@ -26,7 +26,7 @@ const handleMessages = (io: Server, socket: Socket) => {
         "1",
         ")",
       ]);
-      console.log(message);
+
       emitServerMessage(socket, { message: `${result}` });
     } catch (e) {
       console.log(e);
