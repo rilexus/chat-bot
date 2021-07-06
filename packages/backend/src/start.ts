@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
-import { handleMessages } from "./event-handlers";
+import {handleConnectionEvent, handleMessages} from "./event-handlers";
 
 function errorMiddleware(error, req, res, next) {
   if (res.headersSent) {
@@ -77,7 +77,10 @@ function startServer() {
     handleMessages(io, socket);
   };
 
-  io.on("connection", onConnection);
+  io.on("connection", (socket:Socket) => {
+    handleConnectionEvent(io, socket)
+    onConnection(socket)
+  });
 
   return new Promise((resolve) => {
     // start server
