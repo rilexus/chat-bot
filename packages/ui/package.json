@@ -6,6 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "tsc:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "start:dev": "npm run tsc:watch"
   },
   "author": "Stanislav Panchenko",
@@ -18,9 +20,9 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.11",
-    "prettier": "^2.3.2",
     "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8"
+    "@types/react-dom": "^17.0.8",
+    "@types/styled-components": "^5.1.11",
+    "prettier": "^2.3.2"
   }
 }

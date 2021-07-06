@@ -1,12 +1,6 @@
 import React, { FC, HTMLProps } from "react";
 import styled, { css } from "styled-components";
-import {
-  colors,
-  padding,
-  border,
-  BaseTextCSS,
-  boxShadow,
-} from "../../../theme";
+import { colors, border, BaseTextCSS, boxShadow } from "../../../theme";
 
 const BaseButtonCSS = css`
   border: none;

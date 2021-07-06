@@ -2,6 +2,8 @@
   "name": "@chat-bot/frontend",
   "version": "1.0.0",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "start:dev": "webpack serve --config ./webpack.config.js --env mode=development --env port=3000"
   },
   "author": "Stanislav Panchenko",

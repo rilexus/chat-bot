@@ -4,7 +4,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start:dev": "lerna run start:dev --parallel",
-    "postinstall": "yarn run bootstrap"
+    "postinstall": "yarn run bootstrap",
+    "test": "lerna run test --parallel",
+    "test:watch": "lerna run test:watch --parallel"
   },
   "workspaces": [
     "packages/*"
@@ -19,6 +21,11 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "ts-jest": "^27.0.3",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.6",
     "@types/node": "^16.0.0",
     "@types/react": "^17.0.13",
     "@types/react-dom": "^17.0.8",
