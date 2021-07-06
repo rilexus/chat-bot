@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import socketIOClient from "socket.io-client";
-import {useCallbackRef} from "../../hooks";
+import { useCallbackRef } from "../../hooks";
 
 const SocketContext = createContext(null);
 
@@ -17,13 +17,14 @@ const useSocketDispatch = () => {
   return dispatch;
 };
 
+const useSocketContext = () => useContext(SocketContext);
+
 const useSocketOn = (
   event: string,
   callback: (payload: { [key: string]: any }) => void
 ) => {
-  
-  const callbackRef = useCallbackRef(callback)
-  
+  const callbackRef = useCallbackRef(callback);
+
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
@@ -40,12 +41,16 @@ const SocketProvider: FC = ({ children }) => {
   const [connected, setSetConnected] = useState(false);
 
   useEffect(() => {
-    socketRef.current.on("connect", () => {
-      setSetConnected(true);
-    });
-    socketRef.current.on("disconnect", () => {
-      setSetConnected(false);
-    });
+    const connect = () => setSetConnected(true);
+    const disconnect = () => setSetConnected(false);
+    socketRef.current.on("connect", connect);
+    socketRef.current.on("disconnect", connect);
+    socketRef.current.on("connect_error", disconnect);
+    return () => {
+      socketRef.current.off("connect", connect);
+      socketRef.current.off("connect_error", disconnect);
+      socketRef.current.off("disconnect", disconnect);
+    };
   }, [socketRef]);
 
   const dispatch = (action: any) => {
@@ -82,4 +87,10 @@ const connectSocket = (
   };
 };
 
-export { SocketProvider, useSocketDispatch, useSocketOn, connectSocket };
+export {
+  SocketProvider,
+  useSocketDispatch,
+  useSocketOn,
+  connectSocket,
+  useSocketContext,
+};
