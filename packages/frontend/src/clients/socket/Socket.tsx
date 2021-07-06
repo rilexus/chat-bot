@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import socketIOClient from "socket.io-client";
+import {useCallbackRef} from "../../hooks";
 
 const SocketContext = createContext(null);
 
@@ -20,12 +21,9 @@ const useSocketOn = (
   event: string,
   callback: (payload: { [key: string]: any }) => void
 ) => {
-  const callbackRef = useRef(callback);
-
-  useEffect(() => {
-    callbackRef.current = callback;
-  }, [callback]);
-
+  
+  const callbackRef = useCallbackRef(callback)
+  
   const { socket } = useContext(SocketContext);
 
   useEffect(() => {
