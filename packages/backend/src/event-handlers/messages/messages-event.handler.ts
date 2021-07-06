@@ -11,21 +11,7 @@ const handleMessages = (io: Server, socket: Socket) => {
     const { message } = payload;
 
     try {
-      const result = MathService.evaluate([
-        "(",
-        "(",
-        "(",
-        "2",
-        "*",
-        "2",
-        ")",
-        "+",
-        "1",
-        ")",
-        "-",
-        "1",
-        ")",
-      ]);
+      const result = MathService.evaluate(message);
 
       emitServerMessage(socket, { message: `${result}` });
     } catch (e) {

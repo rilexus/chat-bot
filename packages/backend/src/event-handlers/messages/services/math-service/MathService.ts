@@ -62,36 +62,38 @@ class MathService {
     );
   }
 
-  static evaluate(expression: string[]): number {
+  static evaluate(expression: string): number {
     // Dijkstra's two-stack algorithm <https://gist.github.com/adnauseum/e443217890e6dfca182051c226854fa2>
     const valueStack = [];
     const operationStack = [];
 
-    expression.forEach(
-      (
-        char /* [left parentheses | numeric value | operator | right parentheses] */
-      ) => {
-        const _number = parseInt(char, 10);
-        const isNumber = !isNaN(_number);
+    expression
+      .split("")
+      .forEach(
+        (
+          char /* [left parentheses | numeric value | operator | right parentheses] */
+        ) => {
+          const _number = parseInt(char, 10);
+          const isNumber = !isNaN(_number);
 
-        if (char === "(") {
-          noop();
-        } else if (isNumber) {
-          valueStack.push(_number);
-        } else if (this.isSupportedOperator(char)) {
-          operationStack.push(char);
-        } else if (char === ")") {
-          while (operationStack.length !== 0) {
-            const operator = operationStack.pop();
-            const value2 = valueStack.pop();
-            const value1 = valueStack.pop();
-            valueStack.push(this.calc(operator, value1, value2));
+          if (char === "(") {
+            noop();
+          } else if (isNumber) {
+            valueStack.push(_number);
+          } else if (this.isSupportedOperator(char)) {
+            operationStack.push(char);
+          } else if (char === ")") {
+            while (operationStack.length !== 0) {
+              const operator = operationStack.pop();
+              const value2 = valueStack.pop();
+              const value1 = valueStack.pop();
+              valueStack.push(this.calc(operator, value1, value2));
+            }
+          } else {
+            throw new Error("Syntax error!");
           }
-        } else {
-          throw new Error("Syntax error!");
         }
-      }
-    );
+      );
 
     if (valueStack.length !== 1 && operationStack.length !== 0) {
       throw new Error("Syntax error!");
