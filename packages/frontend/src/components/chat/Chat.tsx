@@ -24,8 +24,9 @@ const OfflinePil = () => {
 
 const Chat: FC = () => {
   const [components, { sendMessage }] = useChatController();
-  const handleSend = (message: string) => {
-    sendMessage(message);
+
+  const handleSend = (event: { target: { value: string } }) => {
+    sendMessage(event.target.value);
   };
 
   return (

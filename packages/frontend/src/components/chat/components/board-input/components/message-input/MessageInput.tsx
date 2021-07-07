@@ -6,11 +6,15 @@ const FullWidthRoundInput = styled(StyledRoundInput)`
   flex-grow: 1;
   margin: ${margin("3")};
 `;
-
+const MESSAGE_INPUT_PLACEHOLDER = "Message";
 const MessageInput: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
   return (
-    <FullWidthRoundInput {...props} type={"text"} placeholder={"Message"} />
+    <FullWidthRoundInput
+      {...props}
+      type={"text"}
+      placeholder={MESSAGE_INPUT_PLACEHOLDER}
+    />
   );
 };
 
-export { MessageInput };
+export { MessageInput, MESSAGE_INPUT_PLACEHOLDER };
