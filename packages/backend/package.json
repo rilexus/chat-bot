@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "start:dev": "ts-node-dev --respawn --notify ./src/index.ts"
   },
   "author": "Stanislav Panchenko",

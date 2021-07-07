@@ -118,12 +118,12 @@ class MathService extends BasicMath {
             valueStack.push(this.applyOperator(operator, value1, value2));
           }
         } else {
-          throw new Error("Syntax error!");
+          throw new SyntaxError("Syntax error!");
         }
       }
     );
     if (valueStack.length !== 1 && operationStack.length !== 0) {
-      throw new Error("Syntax error!");
+      throw new SyntaxError("Syntax error!");
     }
     return valueStack[0];
   }
