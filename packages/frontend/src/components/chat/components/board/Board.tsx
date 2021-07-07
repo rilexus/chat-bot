@@ -32,7 +32,7 @@ const Board: FC<{ boardComponents: BoardComponentType[] }> = ({
   }, [boardComponents, ref]);
 
   return (
-    <BoardWrapper ref={ref}>
+    <BoardWrapper ref={ref} id={"Board"}>
       <div>
         {boardComponents.map((component, idx) => {
           return (

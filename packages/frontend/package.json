@@ -4,6 +4,9 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
+    "test:e2e": "npm run cypress:run",
     "start:dev": "webpack serve --config ./webpack.config.js --env mode=development --env port=3000"
   },
   "author": "Stanislav Panchenko",
@@ -12,7 +15,10 @@
     "@chat-bot/types": "1.0.0",
     "@chat-bot/ui": "1.0.0",
     "@chat-bot/webpack-config": "1.0.0",
+    "@testing-library/cypress": "^7.0.6",
     "@testing-library/user-event": "^13.1.9",
+    "@types/node": "^16.0.0",
+    "cypress": "^7.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "socket.io-client": "^4.1.2",

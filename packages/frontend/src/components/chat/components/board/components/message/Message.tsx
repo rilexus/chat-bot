@@ -22,12 +22,12 @@ const StyledForeignMessage = styled(StyledBaseMessage)`
   text-align: left;
   background-color: ${colors("gray.200")};
 `;
-
+//
 const Message: FC<{ text: string; own: boolean }> = ({ text, own }) => {
   return own ? (
-    <StyledOwnMessage>{text}</StyledOwnMessage>
+    <StyledOwnMessage data-testid={`${text}`}>{text}</StyledOwnMessage>
   ) : (
-    <StyledForeignMessage>{text}</StyledForeignMessage>
+    <StyledForeignMessage data-testid={`${text}`}>{text}</StyledForeignMessage>
   );
 };
 

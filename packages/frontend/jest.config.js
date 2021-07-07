@@ -23,6 +23,10 @@ module.exports = {
   // should contain `test` or `spec`.
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   
+  modulePathIgnorePatterns: [
+    "<rootDir>/dist/",
+    "<rootDir>/cypress/"
+  ],
   // Module file extensions for importing
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"]
 };

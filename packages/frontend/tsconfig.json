@@ -3,10 +3,17 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "react",
+    "types": [
+      "jest",
+      "node"
+    ],
     "sourceMap": true,
     "lib": ["DOM", "es5", "es6"],
     "esModuleInterop": true
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "**/*.d.ts",
     "node_modules",
