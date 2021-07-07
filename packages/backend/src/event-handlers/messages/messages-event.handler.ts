@@ -18,8 +18,6 @@ const handleMessages = (io: Server, socket: Socket) => {
       console.log(e);
       emitServerMessage(socket, { message: e.message });
     }
-
-    // emitServerMessage(socket, payload);
   };
 
   socket.on(MessageActionTypes.CLIENT_MESSAGE, handleClientMessage);

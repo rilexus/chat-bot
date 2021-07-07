@@ -20,9 +20,40 @@ class SyntaxService {
   static isMultiplication(char: string) {
     return char === SUPPORTED_OPERATORS.MULT;
   }
+
+  static concatNumbers(value: string): string[] {
+    // split value string in to an array of distinct value elements: "(21-10)" => ["(", "22", "-", "10", ")"]
+    return value
+      .split("" /*split in individual char*/)
+      .reduce((result, current) => {
+        if (
+          !isNaN(
+            parseInt(current, 10)
+          ) /* current char is a int number TODO: extend to floats */ &&
+          !isNaN(
+            parseInt(result[result.length - 1], 10)
+          ) /* last char in res is number*/
+        ) {
+          const v = [
+            ...result.slice(0, result.length - 1) /* remove last elem */,
+          ];
+          return [
+            ...v,
+            `${
+              result[result.length - 1]
+            }${current}` /* concat ongoing number to one string */,
+          ];
+        }
+        return [...result, current];
+      }, []);
+  }
+
+  static parse(value: string): string[] {
+    return this.concatNumbers(value);
+  }
 }
 
-class MathService {
+class BasicMath {
   static add(...values) {
     return values.reduce((result, currValue) => result + currValue, 0);
   }
@@ -37,8 +68,7 @@ class MathService {
   static divide(value1: number, value2: number) {
     return value1 / value2;
   }
-
-  static calc(operator: string, value1: number, value2: number) {
+  static applyOperator(operator: string, value1: number, value2: number) {
     if (SyntaxService.isPlus(operator)) {
       return this.add(value1, value2);
     }
@@ -52,7 +82,8 @@ class MathService {
       return this.multiplicate(value1, value2);
     }
   }
-
+}
+class MathService extends BasicMath {
   static isSupportedOperator(char) {
     return (
       SyntaxService.isMinus(char) ||
@@ -62,43 +93,44 @@ class MathService {
     );
   }
 
-  static evaluate(expression: string): number {
-    // Dijkstra's two-stack algorithm <https://gist.github.com/adnauseum/e443217890e6dfca182051c226854fa2>
+  static eval(expression: string[]): number {
+    // Dijkstra's Two-Stack Algorithm
     const valueStack = [];
     const operationStack = [];
+    expression.forEach(
+      (
+        char /* [left parentheses | numeric value | operator | right parentheses] */
+      ) => {
+        const _number = parseInt(char, 10);
+        const isNumber = !isNaN(_number);
 
-    expression
-      .split("")
-      .forEach(
-        (
-          char /* [left parentheses | numeric value | operator | right parentheses] */
-        ) => {
-          const _number = parseInt(char, 10);
-          const isNumber = !isNaN(_number);
-
-          if (char === "(") {
-            noop();
-          } else if (isNumber) {
-            valueStack.push(_number);
-          } else if (this.isSupportedOperator(char)) {
-            operationStack.push(char);
-          } else if (char === ")") {
-            while (operationStack.length !== 0) {
-              const operator = operationStack.pop();
-              const value2 = valueStack.pop();
-              const value1 = valueStack.pop();
-              valueStack.push(this.calc(operator, value1, value2));
-            }
-          } else {
-            throw new Error("Syntax error!");
+        if (char === "(") {
+          noop();
+        } else if (isNumber) {
+          valueStack.push(_number);
+        } else if (this.isSupportedOperator(char)) {
+          operationStack.push(char);
+        } else if (char === ")") {
+          while (operationStack.length !== 0) {
+            const operator = operationStack.pop();
+            const value2 = valueStack.pop();
+            const value1 = valueStack.pop();
+            valueStack.push(this.applyOperator(operator, value1, value2));
           }
+        } else {
+          throw new Error("Syntax error!");
         }
-      );
-
+      }
+    );
     if (valueStack.length !== 1 && operationStack.length !== 0) {
       throw new Error("Syntax error!");
     }
     return valueStack[0];
+  }
+
+  static evaluate(expression: string): number {
+    const parsedExpression = SyntaxService.parse(expression);
+    return this.eval(parsedExpression);
   }
 }
 export { MathService };
