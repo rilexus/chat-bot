@@ -2,7 +2,7 @@
   "name": "@chat-bot/database",
   "description": "",
   "scripts": {
-
+    "start": "docker-compose up"
   },
   "author": "Stanislav Panchenko",
   "license": "ISC",
