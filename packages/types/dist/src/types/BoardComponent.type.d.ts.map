@@ -1,0 +1,1 @@
+{"version":3,"file":"BoardComponent.type.d.ts","sourceRoot":"","sources":["../../../src/types/BoardComponent.type.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,eAAe,EAAC,MAAM,UAAU,CAAC;AAEzC,aAAK,kBAAkB,GAAG;IACzB,GAAG,EAAE,OAAO,CAAC;IACb,KAAK,EAAE;QACN,EAAE,EAAE,MAAM,CAAC;QACX,KAAK,EAAE,MAAM,CAAC;KACd,CAAC;IACF,IAAI,EAAE,eAAe,CAAC;CACtB,CAAC;AAEF,OAAO,EAAC,kBAAkB,EAAC,CAAA"}
