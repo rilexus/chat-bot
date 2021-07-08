@@ -1,0 +1,11 @@
+{
+  "name": "@chat-bot/database",
+  "description": "",
+  "scripts": {
+
+  },
+  "author": "Stanislav Panchenko",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

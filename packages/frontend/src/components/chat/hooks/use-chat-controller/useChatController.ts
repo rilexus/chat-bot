@@ -23,7 +23,7 @@ const useChatController = (): [
   useOnServerMessage((payload) => {
     addMessageToState({
       own: false,
-      props: { id: "22", value: payload.message },
+      props: { id: "22", value: payload.value },
       type: COMPONENT_TYPES.TEXT_MESSAGE,
     });
   });
@@ -35,8 +35,11 @@ const useChatController = (): [
         props: { id: "22", value: message },
         type: COMPONENT_TYPES.TEXT_MESSAGE,
       });
-
-      sendSocketMessage(message);
+      sendSocketMessage({
+        value: message,
+        userID: "userID here",
+        sentAt: new Date().toISOString(),
+      });
     },
     [addMessageToState]
   );

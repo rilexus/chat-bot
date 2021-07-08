@@ -8,20 +8,20 @@ enum SUPPORTED_OPERATORS {
 }
 
 class SyntaxService {
-  static isMinus(char: string) {
+  isMinus(char: string) {
     return char === SUPPORTED_OPERATORS.MINUS;
   }
-  static isPlus(char: string) {
+  isPlus(char: string) {
     return char === SUPPORTED_OPERATORS.PLUS;
   }
-  static isDivide(char: string) {
+  isDivide(char: string) {
     return char === SUPPORTED_OPERATORS.DIVIDE;
   }
-  static isMultiplication(char: string) {
+  isMultiplication(char: string) {
     return char === SUPPORTED_OPERATORS.MULT;
   }
 
-  static concatNumbers(value: string): string[] {
+  concatNumbers(value: string): string[] {
     // split value string in to an array of distinct value elements: "(21-10)" => ["(", "22", "-", "10", ")"]
     return value
       .split("" /*split in individual char*/)
@@ -48,52 +48,57 @@ class SyntaxService {
       }, []);
   }
 
-  static parse(value: string): string[] {
+  parse(value: string): string[] {
     return this.concatNumbers(value);
   }
 }
 
 class BasicMath {
-  static add(...values) {
+  add(...values) {
     return values.reduce((result, currValue) => result + currValue, 0);
   }
 
-  static multiplicate(...values) {
+  multiplicate(...values) {
     return values.reduce((result, currValue) => result * currValue, 1);
   }
 
-  static sub(value1: number, value2: number) {
+  sub(value1: number, value2: number) {
     return value1 - value2;
   }
-  static divide(value1: number, value2: number) {
+  divide(value1: number, value2: number) {
     return value1 / value2;
   }
-  static applyOperator(operator: string, value1: number, value2: number) {
-    if (SyntaxService.isPlus(operator)) {
+
+  applyOperator(operator: string, value1: number, value2: number) {
+    if (operator === "+") {
       return this.add(value1, value2);
     }
-    if (SyntaxService.isMinus(operator)) {
+    if (operator === "-") {
       return this.sub(value1, value2);
     }
-    if (SyntaxService.isDivide(operator)) {
+    if (operator === "/") {
       return this.divide(value1, value2);
     }
-    if (SyntaxService.isMultiplication(operator)) {
+    if (operator === "*") {
       return this.multiplicate(value1, value2);
     }
   }
 }
+
 class MathService extends BasicMath {
-  static isSupportedOperator(char) {
+  constructor(private readonly syntaxService: SyntaxService) {
+    super();
+  }
+  isSupportedOperator(char) {
     return (
-      SyntaxService.isMinus(char) ||
-      SyntaxService.isPlus(char) ||
-      SyntaxService.isMultiplication(char) ||
-      SyntaxService.isDivide(char)
+      this.syntaxService.isMinus(char) ||
+      this.syntaxService.isPlus(char) ||
+      this.syntaxService.isMultiplication(char) ||
+      this.syntaxService.isDivide(char)
     );
   }
 
-  static eval(expression: string[]): number {
+  eval(expression: string[]): number {
     // Dijkstra's Two-Stack Algorithm
     const valueStack = [];
     const operationStack = [];
@@ -128,9 +133,10 @@ class MathService extends BasicMath {
     return valueStack[0];
   }
 
-  static evaluate(expression: string): number {
-    const parsedExpression = SyntaxService.parse(expression);
+  evaluate(expression: string): number {
+    const parsedExpression = this.syntaxService.parse(expression);
     return this.eval(parsedExpression);
   }
 }
+export default new MathService(new SyntaxService());
 export { MathService };

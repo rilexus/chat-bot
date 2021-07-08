@@ -1,25 +1,36 @@
-import { MessageActionTypes } from "@chat-bot/types";
+import { MessageActionTypes, MessageInterface } from "@chat-bot/types";
 import { useSocketDispatch } from "../../Socket";
 
-const createSendMessageAction = (message: string) => {
+const createSendMessageAction = (
+  message: MessageInterface
+): {
+  type: MessageActionTypes.CLIENT_MESSAGE;
+  payload: MessageInterface;
+} => {
   return {
     type: MessageActionTypes.CLIENT_MESSAGE,
-    payload: { message: message },
+    payload: message,
   };
 };
 type Action = { type: string; [key: string]: any };
 type Dispatcher = (action: Action) => void;
 
-const dispatchSendMessageAction = (dispatch: Dispatcher, message: string) => {
+const dispatchSendMessageAction = (
+  dispatch: Dispatcher,
+  message: MessageInterface
+) => {
   dispatch(createSendMessageAction(message));
 };
 
-const useSocketActions = () => {
+const useSocketActions = ():{
+  sendMessage: (message: MessageInterface) => void
+} => {
   const dispatch = useSocketDispatch();
 
   return {
-    sendMessage: (message: string) =>
-      dispatchSendMessageAction(dispatch, message),
+    sendMessage: (message: MessageInterface) => {
+      dispatchSendMessageAction(dispatch, message)
+    },
   };
 };
 

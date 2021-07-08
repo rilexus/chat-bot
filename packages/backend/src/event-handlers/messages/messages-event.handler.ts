@@ -1,22 +1,23 @@
-import { MessageActionTypes } from "@chat-bot/types";
+import { MessageActionTypes, MessageInterface } from "@chat-bot/types";
 import { Server, Socket } from "socket.io";
-import { MathService } from "./services/math-service";
+import { messageService } from "./services";
 
-const emitServerMessage = (socket: Socket, payload: { message: string }) => {
+const emitServerMessage = (socket: Socket, payload: { value: string }) => {
   socket.emit(MessageActionTypes.SERVER_MESSAGE, payload);
 };
 
-const handleMessages = (io: Server, socket: Socket) => {
-  const handleClientMessage = (payload /* TODO: type this AND validate */) => {
-    const { message } = payload;
-
+const handleMessages = async (io: Server, socket: Socket) => {
+  const handleClientMessage = async (
+    payload: MessageInterface /* TODO: validate this */
+  ) => {
     try {
-      const result = MathService.evaluate(message);
-
-      emitServerMessage(socket, { message: `${result}` });
+      const result = await messageService.processNewMessage(payload);
+      if (!!result || result === "0") {
+        emitServerMessage(socket, { value: `${result}` });
+      }
     } catch (e) {
       console.log(e);
-      emitServerMessage(socket, { message: e.message });
+      emitServerMessage(socket, { value: e.message });
     }
   };
 

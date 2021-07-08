@@ -1,1 +1,3 @@
-export * from './MathService'
+import mathService, {MathService} from "./MathService";
+export {mathService, MathService}
+
