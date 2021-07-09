@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 import { MessageInterface } from "@chat-bot/types";
 import { MessageSchema } from "./schemas";
+import { MessageModel } from "./models";
 const { model } = mongoose;
-
-const MessageModel = model<MessageInterface>("Message", MessageSchema);
 
 const DATABASE_USER_NAME = "root";
 const DATABASE_PASSWORD = "example";
@@ -25,6 +24,10 @@ class DatabaseService {
   async saveMessage(message: MessageInterface) {
     const Message = new MessageModel(message);
     return Message.save();
+  }
+
+  async findHistory() {
+    return MessageModel.find({ value: { $regex: /!/, $options: "i" } });
   }
 }
 export default new DatabaseService();

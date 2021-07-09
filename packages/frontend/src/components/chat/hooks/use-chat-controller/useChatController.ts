@@ -21,21 +21,25 @@ const useChatController = (): [
   const { sendMessage: sendSocketMessage } = useSocketActions();
 
   useOnServerMessage((payload) => {
-    addMessageToState({
-      own: false,
-      props: { id: "22", value: payload.value },
-      type: COMPONENT_TYPES.TEXT_MESSAGE,
+    payload.forEach(({ value }: any /* TODO: type this */) => {
+      addMessageToState({
+        own: false,
+        props: { id: "22", value: value },
+        type: COMPONENT_TYPES.TEXT_MESSAGE,
+      });
     });
   });
 
   const sendMessage = useCallback(
     (message: string) => {
       addMessageToState({
+        // TODO: change to array of messages
         own: true,
         props: { id: "22", value: message },
         type: COMPONENT_TYPES.TEXT_MESSAGE,
       });
       sendSocketMessage({
+        // TODO: change to array of messages
         value: message,
         userID: "userID here",
         sentAt: new Date().toISOString(),
