@@ -13,7 +13,7 @@
 * testing-library-react
 * testing-library-react/user-event
 
-##Modules
+##Project structure
 All modules are located in the `package` folder. There are the following packages:
 * database: Contains the database data and the docker-compose.yml
 * backend: Contains the Express node server
