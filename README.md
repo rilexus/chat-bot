@@ -1,5 +1,5 @@
 #Chat-bot
-![](https://media.giphy.com/media/Xbcl7LFbXBMQHre2MR/giphy.gif)
+![review](https://media.giphy.com/media/Xbcl7LFbXBMQHre2MR/giphy.gif)
 
 ##Tech
 * React (TypeScript)
