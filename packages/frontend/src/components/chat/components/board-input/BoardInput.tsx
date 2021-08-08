@@ -1,4 +1,10 @@
-import React, { KeyboardEvent, FC, SyntheticEvent, useState } from "react";
+import React, {
+  KeyboardEvent,
+  FC,
+  SyntheticEvent,
+  useState,
+  CSSProperties,
+} from "react";
 import { MessageInput, SendButton } from "./components";
 import { border, BoxShadowLgCSS, colors, Flex, padding } from "@chat-bot/ui";
 import styled from "styled-components";
@@ -16,7 +22,8 @@ const createEvent = ({ value }: { value: string }) => ({
 
 const BoardInput: FC<{
   onSend: (event: { target: { value: string } }) => void;
-}> = ({ onSend }) => {
+  style?: CSSProperties;
+}> = ({ onSend, style }) => {
   const [value, setValue] = useState("");
 
   const send = () => {
@@ -37,7 +44,7 @@ const BoardInput: FC<{
   };
 
   return (
-    <Wrapper>
+    <Wrapper style={style}>
       <form onSubmit={handleSubmit}>
         <Flex alignItems={"center"}>
           <MessageInput
